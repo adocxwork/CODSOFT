@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.calculator {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 350px;
+    width: 100%;
+}
+
+.display {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: right;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.previous-operand {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 18px;
+    min-height: 24px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.current-operand {
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.btn {
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn.clear {
+    background: rgba(255, 107, 107, 0.8);
+    grid-column: span 2;
+}
+
+.btn.clear:hover {
+    background: rgba(255, 107, 107, 1);
+}
+
+.btn.operator {
+    background: rgba(255, 193, 7, 0.8);
+    color: #333;
+}
+
+.btn.operator:hover {
+    background: rgba(255, 193, 7, 1);
+}
+
+.btn.equals {
+    background: rgba(76, 175, 80, 0.8);
+    grid-row: span 2;
+}
+
+.btn.equals:hover {
+    background: rgba(76, 175, 80, 1);
+}
+
+.btn.zero {
+    grid-column: span 2;
+}
+
+/* Responsive design */
+@media (max-width: 400px) {
+    .calculator {
+        padding: 15px;
+        max-width: 300px;
+    }
+    
+    .btn {
+        padding: 15px;
+        font-size: 18px;
+    }
+    
+    .current-operand {
+        font-size: 28px;
+    }
+    
+    .previous-operand {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 320px) {
+    .calculator {
+        padding: 10px;
+        max-width: 280px;
+    }
+    
+    .btn {
+        padding: 12px;
+        font-size: 16px;
+    }
+    
+    .current-operand {
+        font-size: 24px;
+    }
+} 

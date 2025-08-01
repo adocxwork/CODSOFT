@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aditya Gupta - Personal Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content h1 {
+            font-size: 3rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .header-content p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 2rem 0;
+            padding: 3rem 0;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .profile-image img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #667eea;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image img:hover {
+            transform: scale(1.05);
+        }
+
+        .bio {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .bio h3 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .bio p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-category h3 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-category h3::before {
+            content: '▸';
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            color: #555;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .skill-list li::before {
+            content: '•';
+            color: #667eea;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .tech-stack {
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .project-description {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-features {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-features h4 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-features ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .project-features li {
+            padding: 0.3rem 0;
+            color: #555;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .project-features li::before {
+            content: '→';
+            color: #667eea;
+            position: absolute;
+            left: 0;
+        }
+
+        .project-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-weight: 600;
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .resume-section {
+            text-align: center;
+        }
+
+        .resume-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .resume-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(39, 174, 96, 0.3);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-item h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-item a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #764ba2;
+        }
+
+        footer {
+            background: rgba(44, 62, 80, 0.95);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-radius: 15px 15px 0 0;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            margin-top: 1rem;
+        }
+
+        .footer-links a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #764ba2;
+        }
+
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-image img {
+                width: 250px;
+                height: 250px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Aditya Gupta</h1>
+                <p>Full Stack Developer & Computer Science Enthusiast</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- About Section -->
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="profile-image">
+                    <img src="Profile_Pic.jpg" alt="Aditya Gupta">
+                </div>
+                <div class="bio">
+                    <h3>Hello! I'm Aditya Gupta</h3>
+                    <p>
+                        I am a passionate Computer Science student with a strong foundation in programming and web
+                        development.
+                        I love creating innovative solutions and turning complex problems into simple, beautiful
+                        designs.
+                        With expertise in multiple programming languages and modern web technologies, I enjoy building
+                        applications that make a difference. My journey in technology started with simple projects and
+                        has evolved into creating comprehensive systems that solve real-world problems.
+                    </p>
+                    <p>
+                        When I'm not coding, you can find me exploring new technologies, contributing to open-source
+                        projects,
+                        or sharing knowledge with the developer community. I believe in continuous learning and staying
+                        updated with the latest trends in technology.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2 class="section-title">Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Frontend Development</h3>
+                    <ul class="skill-list">
+                        <li>HTML5: Creating structured and accessible web pages</li>
+                        <li>CSS3: Styling and designing responsive web layouts</li>
+                        <li>JavaScript: Adding interactivity and dynamic features to websites</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <ul class="skill-list">
+                        <li>C</li>
+                        <li>C++</li>
+                        <li>Java</li>
+                        <li>Python</li>
+                        <li>Golang</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Database</h3>
+                    <ul class="skill-list">
+                        <li>MySQL</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Version Control</h3>
+                    <ul class="skill-list">
+                        <li>Git</li>
+                        <li>GitHub</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Core Concepts</h3>
+                    <ul class="skill-list">
+                        <li>Data Structures & Algorithms</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Tools</h3>
+                    <ul class="skill-list">
+                        <li>VS Code</li>
+                        <li>Cursor</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>CS Fundamentals</h3>
+                    <ul class="skill-list">
+                        <li>Object Oriented Programming</li>
+                        <li>Database Management System</li>
+                        <li>Computer Networks</li>
+                        <li>Operating System</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2 class="section-title">Projects</h2>
+            <div class="project-card">
+                <h3 class="project-title">Bakery Management System</h3>
+                <div class="tech-stack">Tech Stack: Python, Text Files</div>
+
+                <div class="project-description">
+                    This is a command-line project developed during school days using Python. It helps bakery owners
+                    manage their business more easily by automating daily tasks like billing, transactions, stock
+                    checking, and more.
+                </div>
+
+                <div class="project-features">
+                    <h4>System Features:</h4>
+                    <ul>
+                        <li><strong>money.txt</strong> – to store available funds</li>
+                        <li><strong>pass.txt</strong> – to store passwords</li>
+                        <li><strong>stock.txt</strong> – to store items and their quantities</li>
+                    </ul>
+                    <p style="margin-top: 1rem; font-style: italic;">
+                        No traditional database is used. Instead, text files and custom logic handle all operations.
+                        This project reflects early learning and practical implementation skills.
+                    </p>
+                </div>
+
+                <a href="https://github.com/adocxwork/BakeryManagementSystem" class="project-link" target="_blank">
+                    View on GitHub
+                </a>
+            </div>
+        </section>
+
+        <!-- Resume Section -->
+        <section id="resume" class="resume-section">
+            <h2 class="section-title">Resume</h2>
+            <p style="font-size: 1.2rem; color: #555; margin-bottom: 1rem;">
+                Download my detailed resume to learn more about my experience and qualifications.
+            </p>
+            <a href="https://drive.google.com/file/d/1_U5WtyacNOUcWqTGZadv5rhW1lngJUXW/view?usp=sharing"
+                class="resume-link" target="_blank">
+                Download Resume (PDF)
+            </a>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h3>GitHub</h3>
+                    <a href="https://github.com/adocxwork" target="_blank">@adocxwork</a>
+                </div>
+                <div class="contact-item">
+                    <h3>LinkedIn</h3>
+                    <a href="https://linkedin.com/in/adityaintern" target="_blank">adityaintern</a>
+                </div>
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <a href="mailto:adityagupta.ac@gmail.com">adityagupta.ac@gmail.com</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Aditya Gupta. All rights reserved.</p>
+            <p>Passionate about technology and innovation</p>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
